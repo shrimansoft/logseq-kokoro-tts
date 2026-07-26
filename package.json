@@ -1,0 +1,26 @@
+{
+  "name": "logseq-kokoro-tts",
+  "version": "0.1.1",
+  "description": "Logseq DB-version TTS plugin using local Kokoro-FastAPI",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && cp node_modules/@logseq/libs/dist/lsplugin.user.js dist/lsplugin.user.js",
+    "proxy": "node scripts/cors-proxy.mjs",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "logseq": {
+    "id": "logseq-kokoro-tts",
+    "name": "Kokoro TTS",
+    "version": "0.1.1",
+    "icon": "icon.svg",
+    "entry": "index.html"
+  },
+  "dependencies": {
+    "@logseq/libs": "^0.0.17"
+  }
+}

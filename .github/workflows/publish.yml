@@ -1,0 +1,25 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: |
+          mkdir logseq-kokoro-tts
+          cp package.json README.md index.html icon.svg logseq-kokoro-tts/
+          cp -r dist logseq-kokoro-tts/dist
+          zip -r logseq-kokoro-tts.zip logseq-kokoro-tts
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: logseq-kokoro-tts.zip
